@@ -1,0 +1,18 @@
+web01
+web03
+db01
+
+[websrvgrp]
+web01 ansible_host=10.138.0.19
+web03 ansible_host=10.138.0.21
+
+[dbsrvgrp]
+db01 ansible_host=10.138.0.20
+
+
+[websrvgrp:vars]
+ansible_user=paramasivaaddala08
+
+[dbsrvgrp:vars]
+ansible_user=paramasivaaddala08
+

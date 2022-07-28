@@ -1,0 +1,31 @@
+---
+- name: Setup NTP
+  hosts: all
+  tasks:
+  - name: Install ntp server on Redhat
+    yum:
+      name: chrony
+      state: present
+    when: ansible_os_family == "RedHat"
+
+
+  - name: Install ntp server on Debian
+    apt:
+      name: ntp
+      state: present
+    when: ansible_os_family == "Debian"
+
+  - name: Start and enable ntp service on Redhat
+    service:
+      name: chronyd
+      state: started
+      enabled: yes
+    when: ansible_os_family == "RedHat"
+
+
+  - name: Start and enable ntp service on Debian
+    service:
+      name: ntp
+      state: started
+      enabled: yes
+    when: ansible_os_family == "Debian"

@@ -1,0 +1,99 @@
+---
+# tasks file for ntpsrv
+
+- name: Install ntp server on Redhat
+  yum:
+    name: ntp
+    state: present
+  when: ansible_os_family == RedHat
+
+
+- name: Install ntp server on Debian
+  yum:
+    name: ntp
+    state: present
+  when: ansible_os_family == Debian
+
+- name: Start and enable ntp service on Redhat
+  servie:
+    name: ntp
+    state: started
+    enabled: yes
+  when: ansible_os_family == RedHat
+
+
+- name: Start and enable ntp service on Redhat
+  servie:
+    name: ntp
+    state: started
+    enabled: yes
+  when: ansible_os_family == Debian
+
+- name: Modify ntp.cfg on Redhat
+  template:
+          src: ntp_redhat.cfg.j2
+          dest: /etc/ntp.cfg  
+  when: ansible_os_family == RedHat
+  notify:
+       handlers:
+        - restart ntp redhat
+   
+- name: Modify ntp.cfg on Debian
+  template:
+          src: ntp_debian.cfg.j2
+          dest: /etc/ntp.cfg  
+  when: ansible_os_family == Debian
+  notify:
+       handlers:
+        - restart ntp debian
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   n

@@ -1,0 +1,31 @@
+---
+- name: Setup Websrv
+  hosts: websrvgrp
+  tasks:
+  - name: Install httpd
+    yum:
+     name: httpd
+     state: present
+  - name: Start and enable httpd
+    service:
+     name: httpd
+     state: started
+     enabled: yes
+  - name: Copy Index.html
+    copy:
+     src: index.html
+     dest: /var/www/html/index.html
+     backup: yes
+- name: Setup DBsrv 
+  hosts: dbsrvgrp
+  tasks:
+  - name: Install mySql
+    yum:
+      name: mariadb-server
+      state: present
+  - name: Start and enable maria-db
+    service:
+      name: mariadb
+      state: started
+      enabled: yes
+
